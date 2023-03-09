@@ -106,6 +106,13 @@ RUN \
     APP_ICON_URL=https://github.com/jlesage/docker-templates/raw/master/jlesage/images/firefox-icon.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
+# 中文字体
+# https://stackoverflow.com/questions/49067625/how-can-i-use-chinese-in-alpine-headless-chrome
+RUN \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && apk add wqy-zenhei@edge
+#RUN \
+#    add-pkg terminus-font ttf-inconsolata ttf-dejavu font-noto font-noto-cjk ttf-font-awesome font-noto-extra && \
+#    add-pkg font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic 
 # Add files.
 COPY rootfs/ /
 COPY --from=membarrier /tmp/membarrier_check /usr/bin/
@@ -120,7 +127,8 @@ RUN \
 # Set public environment variables.
 ENV \
     FF_OPEN_URL= \
-    FF_KIOSK=0
+    FF_KIOSK=0 \
+    LAUNCH_URL=""
 
 # Metadata.
 LABEL \

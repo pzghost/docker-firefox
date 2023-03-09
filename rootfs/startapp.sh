@@ -28,4 +28,4 @@ done
 set -e
 
 /usr/bin/firefox --version
-exec /usr/bin/firefox "$@" >> /config/log/firefox/output.log 2>> /config/log/firefox/error.log
+exec /usr/bin/firefox $LAUNCH_URL "$@" >> /config/log/firefox/output.log 2>> /config/log/firefox/error.log
